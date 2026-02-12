@@ -8,15 +8,14 @@ const Process = () => {
   ];
 
   return (
-    <section className="bg-[background: #60A5FA;
-] py-24 px-6 overflow-hidden">
+    <section className="bg-[#E6F0FA] py-24 px-6 overflow-hidden">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row items-start gap-12 relative">
           {steps.map((step, idx) => (
             <div key={idx} className="flex-1 relative group text-center md:text-left">
               <div className="flex flex-col items-center md:items-start">
                 <div className="relative z-10">
-                  <div className="w-16 h-16 bg-blue-500 text-white rounded-full flex items-center justify-center text-3xl font-bold shadow-lg mb-8 transition-transform group-hover:scale-110">
+                  <div className="w-16 h-16 bg-[#60A5FA] text-white rounded-full flex items-center justify-center text-3xl font-bold shadow-lg mb-8 transition-transform group-hover:scale-110">
                     {step.number}
                   </div>
                   {/* Dotted Arrow */}
