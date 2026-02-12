@@ -17,7 +17,7 @@ export default function ContactSection() {
         </div>
 
         {/* CONTACT FORM - On mobile, this appears below the map */}
-        <div className="order-2 lg:order-1">
+        <div className="order-2 lg:order-1" id="contact-form">
           <ContactForm />
         </div>
 
