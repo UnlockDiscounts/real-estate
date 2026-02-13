@@ -3,22 +3,37 @@ export default function OfficeHours() {
     <div
       className="
         w-full 
-        /* Width & Alignment: Portrait -> Landscape (Centered) -> Desktop */
-        max-w-[380px] landscape:max-w-[540px] lg:max-w-[628px] 
-        landscape:mx-auto lg:mx-0
+        
+        /* Width & Alignment: Portrait -> Landscape -> Desktop */
+        max-w-[380px] 
+        landscape:max-w-[540px] 
+        lg:max-w-[628px] 
+        
+        landscape:mx-auto 
+        lg:mx-0
         
         /* Height: Portrait -> Landscape -> Desktop */
-        h-[129px] landscape:h-[180px] lg:h-[215px] 
+        h-[129px] 
+        landscape:h-[180px] 
+        lg:h-[228px]   /* ✅ Updated from 215px → 228px */
         
         /* Radius & Styling */
-        rounded-[16px] lg:rounded-[20px] 
+        rounded-[16px] 
+        lg:rounded-[20px] 
         bg-white 
-        border-t-[8px] border-t-[#0047AB]
-        mt-8 flex flex-col
+        border-t-[8px] 
+        border-t-[#0047AB]
+        mt-8 
+        flex flex-col
         
         /* Padding: Portrait -> Landscape -> Desktop */
-        pt-[24px] pr-[16px] pb-[24px] pl-[16px] 
-        landscape:p-[20px] lg:p-[24px] 
+        pt-[24px] 
+        pr-[16px] 
+        pb-[24px] 
+        pl-[16px] 
+        
+        landscape:p-[20px] 
+        lg:p-[24px]   /* ✅ Matches Figma */
         
         transition-all duration-300
       "
@@ -27,17 +42,30 @@ export default function OfficeHours() {
         opacity: 1,
       }}
     >
-      {/* TITLE: Centered in Landscape only */}
-      <h4 className="
-        font-manrope font-semibold text-[#0047AB] leading-[100%]
-        text-[18px] landscape:text-[24px] lg:text-[32px] 
-        mb-[6px] landscape:mb-[16px] lg:mb-[24px]
-        landscape:text-center lg:text-left
-      ">
+      {/* TITLE */}
+      <h4
+        className="
+          font-manrope 
+          font-semibold 
+          text-[#0047AB] 
+          leading-[100%]
+
+          text-[18px] 
+          landscape:text-[24px] 
+          lg:text-[32px] 
+
+          mb-[6px] 
+          landscape:mb-[16px] 
+          lg:mb-[24px]
+
+          landscape:text-center 
+          lg:text-left
+        "
+      >
         Office Hours
       </h4>
 
-      {/* HOURS CONTAINER: Spacing adjusts per breakpoint */}
+      {/* HOURS CONTAINER */}
       <div className="flex flex-col gap-[6px] landscape:gap-[16px] lg:gap-[24px]">
         
         {/* Monday - Friday */}

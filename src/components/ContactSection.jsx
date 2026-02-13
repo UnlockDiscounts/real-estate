@@ -4,7 +4,7 @@ import OfficeHours from "./OfficeHours";
 
 export default function ContactSection() {
   return (
-    <section className="max-w-[1440px] mx-auto px-6 lg:px-[80px] py-12 lg:py-24">
+    <section className="max-w-[1440px] mx-auto px-6 lg:px-[80px] py-12 lg:pt-12 lg:pb-24">
       {/* Mobile: Flex column with Map/Hours on top (order-1)
         Desktop: Grid with 2 columns and form on the left 
       */}

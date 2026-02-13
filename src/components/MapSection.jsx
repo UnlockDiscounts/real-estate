@@ -4,7 +4,7 @@ export default function MapSection() {
   return (
     <div className="flex flex-col items-center w-full">
       {/* Section Title */}
-      <h2 className="font-manrope font-medium text-[28px] lg:text-[32px] leading-tight text-black mb-6 text-center">
+      <h2 className="font-manrope font-medium text-[28px] lg:text-[40px] leading-tight text-black mb-6 text-center">
         Find us here
       </h2>
 

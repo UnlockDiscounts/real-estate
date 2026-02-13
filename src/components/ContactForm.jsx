@@ -3,7 +3,7 @@ export default function ContactForm() {
     <div className="flex flex-col items-center w-full px-4">
       
       {/* SECTION TITLE */}
-      <h2 className="font-medium text-[20px] lg:text-[32px] leading-[100%] text-black mb-6 text-center">
+      <h2 className="font-medium text-[20px] lg:text-[40px] leading-[100%] text-black mb-6 text-center">
         Send Us a Message
       </h2>
 
