@@ -1,8 +1,10 @@
 import { Routes, Route } from "react-router-dom";
 
-import About from "./pages/About";
-import Service from "./pages/Service";
+import About from "./Pages/About";
+import Service from "./Pages/Service";
 import Footer from "./components/common/Footer";
+import Home from "./Pages/Home";
+
 
 function App() {
   return (
@@ -11,6 +13,8 @@ function App() {
         <Routes>
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Service />} />
+          <Route path="/home" element={<Home />} />
+
         </Routes>
       </main>
 
