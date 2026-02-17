@@ -3,11 +3,11 @@
 
 @import "tailwindcss";
 
-/* @theme {
+@theme {
   --font-sans: "Poppins", system-ui, sans-serif;
   --font-dm: "DM Serif Display", serif;
   --font-manrope: "Manrope", sans-serif;
-} */
+}
 
 body {
   font-family: "Inter", sans-serif;

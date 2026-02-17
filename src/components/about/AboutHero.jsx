@@ -3,19 +3,17 @@ import HeroImage from "../../assets/images/about-hero-vector.svg";
 
 const AboutHero = () => {
   return (
-    <section className="w-full bg-white min-h-[466px] md:min-h-[648px] flex items-start pt-32 pb-8 md:pt-40 md:pb-4">
+    <section className="w-full bg-white min-h-[466px] md:min-h-[648px] flex items-start pt-18 pb-8 md:pt-30 md:pb-4">
       <div className="w-full max-w-[1440px] mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
-
         {/* LEFT CONTENT */}
         <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left">
-
           <h1 className="text-[32px] md:text-[70px] font-dm font-normal text-black leading-none max-w-[355px] md:max-w-none">
             About Amit Construction
           </h1>
 
           <p className="mt-6 md:mt-8 text-sm md:text-[32px] font-manrope font-medium text-black/50 leading-normal max-w-[373px] md:max-w-[700px]">
-            Committed to excellence in every property we handle. We redefine
-            the real estate experience through transparency, innovation, and
+            Committed to excellence in every property we handle. We redefine the
+            real estate experience through transparency, innovation, and
             unwavering integrity.
           </p>
 
@@ -27,7 +25,6 @@ const AboutHero = () => {
               Contact us
             </span>
           </Link>
-
         </div>
 
         {/* RIGHT IMAGE */}
@@ -38,7 +35,6 @@ const AboutHero = () => {
             className="w-full h-auto object-contain"
           />
         </div>
-
       </div>
     </section>
   );
