@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 
 export default function ContactForm() {
-  // 1. State to manage the custom dropdown
+  // Dropdown state
   const [isOpen, setIsOpen] = useState(false);
   const [selectedSubject, setSelectedSubject] = useState("");
+
+  // URL params
+  const [searchParams] = useSearchParams();
 
   const subjects = [
     { label: "Buy property", value: "buy" },
@@ -13,6 +17,32 @@ export default function ContactForm() {
     { label: "Others", value: "others" },
   ];
 
+  // Auto-select subject from URL
+useEffect(() => {
+  const subjectFromUrl = searchParams.get("subject");
+
+  if (subjectFromUrl) {
+    const matchedSubject = subjects.find(
+      (item) => item.value === subjectFromUrl
+    );
+
+    if (matchedSubject) {
+      setSelectedSubject(matchedSubject.label);
+
+      // 🔥 Scroll to contact form
+      const formElement = document.getElementById("contact-form");
+
+      if (formElement) {
+        formElement.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    }
+  }
+}, [searchParams]);
+
+
   return (
     <div id="contact-form" className="flex flex-col items-center w-full px-4">
       <h2 className="font-medium text-[20px] lg:text-[40px] leading-[100%] text-black mb-6 text-center">
@@ -21,6 +51,7 @@ export default function ContactForm() {
 
       <div className="w-full max-w-[380px] lg:max-w-[628px] bg-[#E6F0FA] lg:bg-[#EAF4FF] rounded-[16px] lg:rounded-[20px] p-6 lg:p-8 shadow-[0px_10px_30px_rgba(38,91,166,0.15)]">
         <div className="flex flex-col gap-4 lg:gap-6">
+
           {/* INPUT FIELDS */}
           {[
             { label: "Full Name", type: "text", placeholder: "Riya Sharma" },
@@ -55,25 +86,30 @@ export default function ContactForm() {
                 bg-white
                 cursor-pointer
                 shadow-[0px_4px_20px_rgba(96,165,250,0.10)]
-                ${isOpen ? 'ring-2 ring-[#265BA6]/20' : ''}
+                ${isOpen ? "ring-2 ring-[#265BA6]/20" : ""}
                 transition-all duration-300
               `}
             >
               <span className={selectedSubject ? "text-black" : "text-[#C6C6C6]"}>
                 {selectedSubject || "Select Subject"}
               </span>
-              
+
               <svg
                 className={`w-4 h-4 lg:w-5 lg:h-5 text-[#C6C6C6] transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2.5"
+                  d="M19 9l-7 7-7-7"
+                />
               </svg>
             </div>
 
-            {/* The Rounded Menu */}
+            {/* Dropdown Menu */}
             {isOpen && (
               <div className="absolute z-50 w-full mt-2 bg-white rounded-[20px] shadow-xl border border-blue-50 overflow-hidden">
                 {subjects.map((item) => (
@@ -92,7 +128,7 @@ export default function ContactForm() {
             )}
           </div>
 
-	        {/* MESSAGE */}
+          {/* MESSAGE */}
           <div>
             <label className="font-medium text-[18px] lg:text-[24px] leading-[100%] text-black mb-2 lg:mb-3 block">
               Message
@@ -107,6 +143,7 @@ export default function ContactForm() {
           <button className="group relative w-full h-[50px] lg:h-[79px] mt-2 rounded-full font-medium text-[18px] lg:text-[20px] overflow-hidden bg-[#265BA6] text-white shadow-[0px_4px_30px_rgba(0,0,0,0.25)] transition-all duration-300 hover:bg-white hover:text-[#265BA6] hover:border-[#265BA6] border border-transparent hover:scale-105 active:bg-[#ffffff] active:text-[#265BA6] active:scale-95">
             <span className="relative z-10">Send Message</span>
           </button>
+
         </div>
       </div>
     </div>
