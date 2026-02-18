@@ -219,58 +219,94 @@ export default function ContactForm() {
      SUBMIT HANDLER
   ========================= */
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    if (
-      !formData.fullName ||
-      !formData.phoneNumber ||
-      !formData.emailAddress ||
-      !formData.subject ||
-      !formData.message
-    ) {
-      alert("All fields are required.");
-      return;
-    }
+  const phoneRegex = /^[6-9]\d{9}$/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    try {
-      setLoading(true);
+  // Trim values
+  const fullName = formData.fullName.trim();
+  const phoneNumber = formData.phoneNumber.trim();
+  const emailAddress = formData.emailAddress.trim();
+  const subject = formData.subject;
+  const message = formData.message.trim();
 
-      const response = await fetch(
-        "https://backendrealestate-nine.vercel.app/api/contact",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
+  // Required check
+  if (!fullName || !phoneNumber || !emailAddress || !subject || !message) {
+    alert("All fields are required.");
+    return;
+  }
+
+  // Name validation
+  if (fullName.length < 3) {
+    alert("Full name must be at least 3 characters.");
+    return;
+  }
+
+  // Email validation
+  if (!emailRegex.test(emailAddress)) {
+    alert("Please enter a valid email address.");
+    return;
+  }
+
+  // Phone validation
+  if (!phoneRegex.test(phoneNumber)) {
+    alert("Phone number must be 10 digits and start with 6-9.");
+    return;
+  }
+
+  // Message validation
+  if (message.length < 10) {
+    alert("Message must be at least 10 characters.");
+    return;
+  }
+
+  try {
+    setLoading(true);
+
+    const response = await fetch(
+      "https://backendrealestate-nine.vercel.app/api/contact",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || "Submission failed");
+        body: JSON.stringify({
+          fullName,
+          phoneNumber,
+          emailAddress,
+          subject,
+          message,
+        }),
       }
+    );
 
-      // Reset form
-      setFormData({
-        fullName: "",
-        phoneNumber: "",
-        emailAddress: "",
-        subject: "",
-        message: "",
-      });
+    const data = await response.json();
 
-      setSelectedSubject("");
-      alert("Message sent successfully!");
-    } catch (error) {
-      console.error(error);
-      alert(error.message || "Something went wrong.");
-    } finally {
-      setLoading(false);
+    if (!response.ok) {
+      throw new Error(data.error || "Submission failed");
     }
-  };
+
+    // Reset form after success
+    setFormData({
+      fullName: "",
+      phoneNumber: "",
+      emailAddress: "",
+      subject: "",
+      message: "",
+    });
+
+    setSelectedSubject("");
+    alert("Message sent successfully!");
+
+  } catch (error) {
+    console.error(error);
+    alert(error.message || "Something went wrong.");
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div id="contact-form" className="flex flex-col items-center w-full px-4">
