@@ -219,90 +219,91 @@ export default function ContactForm() {
      SUBMIT HANDLER
   ========================= */
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  const phoneRegex = /^[6-9]\d{9}$/;
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^[6-9]\d{9}$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  const fullName = formData.fullName.trim();
-  const phoneNumber = formData.phoneNumber.trim();
-  const emailAddress = formData.emailAddress.trim();
-  const subject = formData.subject;
-  const message = formData.message?.trim() || ""; // optional
+    const fullName = formData.fullName.trim();
+    const phoneNumber = formData.phoneNumber.trim();
+    const emailAddress = formData.emailAddress.trim();
+    const subject = formData.subject;
+    const message = formData.message?.trim() || ""; // optional
 
-  // Required fields (message removed)
-  if (!fullName || !phoneNumber || !emailAddress || !subject) {
-    alert("Full name, phone number, email and subject are required.");
-    return;
-  }
-
-  // Name validation
-  if (fullName.length < 3) {
-    alert("Full name must be at least 3 characters.");
-    return;
-  }
-
-  // Email validation
-  if (!emailRegex.test(emailAddress)) {
-    alert("Please enter a valid email address.");
-    return;
-  }
-
-  // Phone validation
-  if (!phoneRegex.test(phoneNumber)) {
-    alert("Phone number must be 10 digits and start with 6-9.");
-    return;
-  }
-
-  try {
-    setLoading(true);
-
-    const response = await fetch(
-      "https://backendrealestate-nine.vercel.app/api/contact",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          fullName,
-          phoneNumber,
-          emailAddress,
-          subject,
-          message, // optional
-        }),
-      }
-    );
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error(data.error || "Submission failed");
+    // Required fields (message removed)
+    if (!fullName || !phoneNumber || !emailAddress || !subject) {
+      alert("Full name, phone number, email and subject are required.");
+      return;
     }
 
-    setFormData({
-      fullName: "",
-      phoneNumber: "",
-      emailAddress: "",
-      subject: "",
-      message: "",
-    });
+    // Name validation
+    if (fullName.length < 3) {
+      alert("Full name must be at least 3 characters.");
+      return;
+    }
 
-    setSelectedSubject("");
-    alert("Message sent successfully!");
+    // Email validation
+    if (!emailRegex.test(emailAddress)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
 
-  } catch (error) {
-    console.error(error);
-    alert(error.message || "Something went wrong.");
-  } finally {
-    setLoading(false);
-  }
-};
+    // Phone validation
+    if (!phoneRegex.test(phoneNumber)) {
+      alert("Phone number must be 10 digits and start with 6-9.");
+      return;
+    }
 
+    try {
+      setLoading(true);
+
+      const response = await fetch(
+        "https://backendrealestate-nine.vercel.app/api/contact",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            fullName,
+            phoneNumber,
+            emailAddress,
+            subject,
+            message, // optional
+          }),
+        },
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Submission failed");
+      }
+
+      setFormData({
+        fullName: "",
+        phoneNumber: "",
+        emailAddress: "",
+        subject: "",
+        message: "",
+      });
+
+      setSelectedSubject("");
+      alert("Message sent successfully!");
+    } catch (error) {
+      console.error(error);
+      alert(error.message || "Something went wrong.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <div id="contact-form" className="flex flex-col items-center w-full px-4">
+    <div
+      id="contact-form"
+      className="flex flex-col items-center w-full px-4 -mt-6 md:-mt-4"
+    >
       <h2 className="font-medium text-[20px] lg:text-[40px] leading-[100%] text-black mb-6 text-center">
         Send Us a Message
       </h2>
@@ -415,20 +416,19 @@ const handleSubmit = async (e) => {
           </div>
 
           {/* MESSAGE */}
-<div>
-  <label className="font-medium text-[18px] lg:text-[24px] leading-[100%] text-black mb-2 lg:mb-3 block">
-    Message (Optional)
-  </label>
-  <textarea
-    value={formData.message}
-    onChange={(e) =>
-      setFormData({ ...formData, message: e.target.value })
-    }
-    placeholder="Tell us how we can help you (optional)"
-    className="w-full h-[80px] lg:h-[120px] rounded-[20px] lg:rounded-[30px] px-6 py-4 bg-white outline-none resize-none text-[16px] lg:text-[18px] placeholder:text-[#C6C6C6] shadow-[0px_4px_20px_rgba(96,165,250,0.10)] focus:shadow-[0px_4px_25px_rgba(38,91,166,0.20)] transition-all duration-300"
-  />
-</div>
-
+          <div>
+            <label className="font-medium text-[18px] lg:text-[24px] leading-[100%] text-black mb-2 lg:mb-3 block">
+              Message (Optional)
+            </label>
+            <textarea
+              value={formData.message}
+              onChange={(e) =>
+                setFormData({ ...formData, message: e.target.value })
+              }
+              placeholder="Tell us how we can help you (optional)"
+              className="w-full h-[80px] lg:h-[120px] rounded-[20px] lg:rounded-[30px] px-6 py-4 bg-white outline-none resize-none text-[16px] lg:text-[18px] placeholder:text-[#C6C6C6] shadow-[0px_4px_20px_rgba(96,165,250,0.10)] focus:shadow-[0px_4px_25px_rgba(38,91,166,0.20)] transition-all duration-300"
+            />
+          </div>
 
           {/* BUTTON */}
           <button

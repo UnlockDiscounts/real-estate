@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from "react-router-dom";
-import { useLayoutEffect, useState, useRef } from "react";
+import { useLayoutEffect, useState, useRef, useEffect } from "react";
 import logo from "../assets/logo.svg";
 
 export default function Navbar() {
@@ -10,12 +10,19 @@ export default function Navbar() {
     width: 0,
   });
 
+  const [visible, setVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
   const navItems = [
     { name: "Home", path: "/" },
     { name: "Services", path: "/services" },
     { name: "About us", path: "/about" },
     { name: "Contact us", path: "/contact" },
   ];
+
+  /* =========================
+     Sliding Pill Logic
+  ========================= */
 
   useLayoutEffect(() => {
     const updatePillPosition = () => {
@@ -42,8 +49,36 @@ export default function Navbar() {
     };
   }, [location.pathname]);
 
+  /* =========================
+     Hide On Scroll Logic
+  ========================= */
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY && currentScrollY > 50) {
+        setVisible(false); // scrolling down
+      } else {
+        setVisible(true); // scrolling up
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]);
+
   return (
-    <div className="w-full fixed top-0 left-0 right-0 z-50 flex justify-center py-2 lg:py-3 px-4">
+    <div
+      className={`w-full fixed top-0 left-0 right-0 z-50 flex justify-center py-2 lg:py-3 px-4 transition-transform duration-300 ${
+        visible ? "translate-y-0" : "-translate-y-full"
+      }`}
+    >
       <nav
         className="relative w-full lg:w-[1280px]
                    h-[45px] lg:h-[80px]
@@ -63,7 +98,7 @@ export default function Navbar() {
         </div>
 
         {/* Nav Links */}
-        <div className="flex-grow flex gap-2 justify-end lg:justify-center">
+        <div className="flex-grow flex gap-2 justify-center lg:justify-center">
           <div
             className="relative flex items-center
                        justify-between lg:justify-center
@@ -108,7 +143,6 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Desktop Spacer */}
         <div className="hidden lg:block w-[250px] flex-shrink-0" />
       </nav>
     </div>

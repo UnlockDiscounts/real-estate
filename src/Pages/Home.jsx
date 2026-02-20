@@ -13,7 +13,7 @@ const Home = () => {
           <Hero />
         </section>
 
-        <section id="properties" className="py-8 pb-2 md:py-18">
+        <section id="properties" className="py-8 pb-2 md:py-12">
           <Properties />
         </section>
 

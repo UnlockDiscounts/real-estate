@@ -18,7 +18,7 @@ export default function TalkDirect() {
   };
 
   return (
-    <section className="w-full flex justify-center pt-6 lg:pt-10 pb-20 lg:pb-32 px-4 lg:px-0">
+    <section className="w-full flex justify-center -pt-40 lg:pt-0 pb-5 lg:pb-22 px-4 lg:px-0">
       <div
         className="
           relative w-full

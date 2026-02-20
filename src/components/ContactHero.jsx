@@ -6,9 +6,9 @@ export default function ContactHero() {
       {/* Mobile: Vertical stack, height auto
         Desktop (lg): Fixed 1440px width and 625px height 
       */}
-      <div className="relative w-full lg:w-[1440px] flex flex-col items-center pt-10 lg:pt-0 lg:block lg:h-[625px]">
+      <div className="relative w-full lg:w-[1440px] flex flex-col items-center pt-6 lg:pt-0 lg:block lg:h-[625px]">
         {/* TEXT BLOCK */}
-        <div className="flex flex-col items-center text-center px-6 lg:px-0 lg:text-left lg:absolute lg:left-[80px] lg:top-[140px] lg:items-start">
+        <div className="flex flex-col items-center text-center px-2 lg:px-0 lg:text-left lg:absolute lg:left-[80px] lg:top-[140px] lg:items-start">
           {/* <h1 className="font-serif font-bold text-[60px] leading-tight lg:text-[70px] lg:leading-[70px] text-black">
             Contact Us
           </h1> */}
@@ -16,7 +16,7 @@ export default function ContactHero() {
             Contact Us
           </h1>
 
-          <p className="font-manrope font-medium text-[16px] leading-relaxed lg:text-[32px] lg:leading-normal text-black/50 mt-4 lg:mt-[40px] max-w-[340px] lg:max-w-[701px]">
+          <p className="mt-6 lg:mt-8 text-sm lg:text-[32px] font-manrope font-medium text-black/50 leading-normal w-full max-w-none lg:max-w-[700px]">
             Get in touch with our team for expert guidance and personalized real
             estate support. We’re here to help you make confident, well-informed
             decisions.

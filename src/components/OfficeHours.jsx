@@ -19,7 +19,7 @@ export default function OfficeHours() {
         bg-white 
         border-t-[8px] 
         border-t-[#0047AB]
-        mt-8 
+        -mt-3 
         flex flex-col
         
         /* Padding: Portrait -> Landscape -> Desktop */
@@ -63,7 +63,6 @@ export default function OfficeHours() {
 
       {/* HOURS CONTAINER */}
       <div className="flex flex-col gap-[6px] landscape:gap-[16px] lg:gap-[24px]">
-        
         {/* Monday - Friday */}
         <div className="flex flex-row justify-between items-center">
           <span className="font-manrope font-medium text-black/50 leading-[100%] text-[12px] landscape:text-[18px] lg:text-[24px]">
@@ -83,7 +82,6 @@ export default function OfficeHours() {
             10:00 AM - 4:00 PM
           </span>
         </div>
-
       </div>
     </div>
   );
