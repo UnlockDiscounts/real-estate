@@ -145,8 +145,8 @@ const Properties = () => {
 
   return (
     <div className="w-full">
-      <div className="container mx-auto px-6 mb-12 text-center">
-        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 tracking-tight">
+      <div className="container mx-auto px-6 mb-6 text-center">
+        <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4 tracking-tight">
           Featured Properties
         </h2>
         <p className="text-gray-500 max-w-2xl text-lg mx-auto">
@@ -154,7 +154,7 @@ const Properties = () => {
         </p>
       </div>
 
-      <div className="flex overflow-x-auto no-scrollbar gap-8 px-6 pb-12 snap-x">
+      <div className="flex overflow-x-auto no-scrollbar gap-6 px-1 pb-12 snap-x">
         {properties.map((prop, index) => (
           <PropertyCard key={index} {...prop} />
         ))}

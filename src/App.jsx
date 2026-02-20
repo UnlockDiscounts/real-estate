@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/common/Footer";
 import Contact from "./Pages/Contact";
 import Home from "./Pages/Home";
+import ScrollToTop from "./components/ScrollToTop";
 import "./App.css";
 
 export default function App() {
@@ -13,6 +14,7 @@ export default function App() {
       <Navbar />
 
       <main className="flex-grow">
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Service />} />
