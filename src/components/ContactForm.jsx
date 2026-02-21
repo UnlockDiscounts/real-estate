@@ -259,7 +259,7 @@ export default function ContactForm() {
       setLoading(true);
 
       const response = await fetch(
-        "https://backendrealestate-nine.vercel.app/api/contact",
+        "https://https://backend-real-estate-be.vercel.app/api/contact",
         {
           method: "POST",
           headers: {
